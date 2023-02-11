@@ -1,0 +1,10 @@
+Simon - Initial Javascript Analysis
+
+game {} - object
+	newGame()
+	addTurn()
+	showTurns()
+	lightsOn()
+	playerTurn()
+	showScore()
+

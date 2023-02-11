@@ -1,0 +1,25 @@
+{
+  "name": "jest-simon",
+  "version": "1.0.0",
+  "description": "Example of jest test and code using the game simon.",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobWar-code/jest-simon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RobWar-code/jest-simon/issues"
+  },
+  "homepage": "https://github.com/RobWar-code/jest-simon#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
