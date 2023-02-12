@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-const { game, newGame, showScore, addTurn, showTurn } = require("../game");
+const { game, newGame, showScore, addTurn, showTurns, lightsOn } = require("../game");
 
 beforeEach(() => {
     let fs = require("fs");
@@ -28,6 +28,9 @@ describe("game object contains correct keys", () => {
     test("button choices are present", () => {
         expect(game.choices).toEqual(["button1", "button2", "button3", "button4"]);
     });
+    test("turn number exists", () => {
+        expect(game.turnNumber).toBe(0);
+    });
 });
 
 describe("newGame works correctly", () => {
@@ -49,5 +52,33 @@ describe("newGame works correctly", () => {
     });
     test("should display score equals 0", () => {
         expect(document.getElementById("score").innerText).toBe(0);
+    });
+});
+
+describe("game play works correctly", () => {
+    beforeEach( () => {
+        game.score = 0;
+        game.currentGame = [];
+        game.playerMoves = [];
+        addTurn();
+    });
+    afterEach( () => {
+        game.score = 0;
+        game.currentGame = [];
+        game.playerMoves = [];
+    });
+    test("Check that add turn adds to length of current game", () => {
+        addTurn();
+        expect(game.currentGame.length).toBe(2);
+    });
+    test("Should add correct class for the button", () => {
+        let button = document.getElementById(game.currentGame[0]);
+        lightsOn(game.currentGame[0]);
+        expect(button.classList).toContain("light");
+    });
+    test("Check the showTurns resets the turn number", () => {
+        game.turnNumber = 42;
+        showTurns();
+        expect(game.turnNumber).toBe(0);
     });
 });
