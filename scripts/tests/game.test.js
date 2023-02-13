@@ -53,6 +53,12 @@ describe("newGame works correctly", () => {
     test("should display score equals 0", () => {
         expect(document.getElementById("score").innerText).toBe(0);
     });
+    test("buttons should have event listener attached", () => {
+        let elements = document.getElementsByClassName("circle");
+        for (element of elements) {
+            expect(element.getAttribute("data-listener")).toEqual("true");
+        }
+    });
 });
 
 describe("game play works correctly", () => {

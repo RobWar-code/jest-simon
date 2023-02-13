@@ -7,6 +7,17 @@ game = {
 }
 
 function newGame () {
+    for (button of document.getElementsByClassName("circle")) {
+        if (button.getAttribute("data-listener") == "false") {
+            button.addEventListener("click", e => {
+                move = e.getAttribute("id");
+                lightsOn(move);
+                game.playerMoves.push(move);
+                playerTurn();
+            });
+            button.setAttribute("data-listener", "true");
+        }
+    }
     game.score = 0;
     game.currentGame = [];
     game.playerMoves = [];
