@@ -33,6 +33,12 @@ describe("game object contains correct keys", () => {
     test("turn number exists", () => {
         expect(game.turnNumber).toBe(0);
     });
+    test("turnInProgress exists", () => {
+        expect("turnInProgress" in game).toBe(true);
+    });
+    test("lastButton exists", ()  => {
+        expect("lastButton" in game).toBe(true);
+    });
 });
 
 describe("newGame works correctly", () => {
@@ -98,6 +104,17 @@ describe("game play works correctly", () => {
         game.playerMoves.push("Wrong");
         playerTurn();
         expect(window.alert).toBeCalledWith("Wrong Move!");
+    });
+    test("Check that turn in progress is set on turn", () => {
+        showTurns();
+        expect(game.turnInProgress).toBe(true);
+    });
+    test("Check that clicking during a computer turn fails", () => {
+        newGame();
+        showTurns();
+        game.lastButton = "";
+        document.getElementById("button2").click();
+        expect(game.lastButton).toEqual("");
     });
 });
 
