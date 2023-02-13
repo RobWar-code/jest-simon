@@ -8,9 +8,9 @@ game = {
 
 function newGame () {
     for (button of document.getElementsByClassName("circle")) {
-        if (button.getAttribute("data-listener") == "false") {
-            button.addEventListener("click", e => {
-                move = e.getAttribute("id");
+        if (button.getAttribute("data-listener") === "false") {
+            button.addEventListener("click", (e) => {
+                move = e.target.getAttribute("id");
                 lightsOn(move);
                 game.playerMoves.push(move);
                 playerTurn();
@@ -54,4 +54,19 @@ function lightsOn(circ) {
     }, 400);
 }
 
-module.exports = {game, newGame, showScore, addTurn, showTurns, lightsOn};
+function playerTurn() {
+    let i = game.playerMoves.length - 1;
+    if (game.currentGame[i] === game.playerMoves[i]) {
+        if (i === game.currentGame.length - 1) {
+            ++game.score;
+            showScore();
+            addTurn();
+        }
+    }
+    else {
+        alert("Wrong Move!");
+        newGame();
+    }
+}
+
+module.exports = {game, newGame, showScore, addTurn, showTurns, lightsOn, playerTurn};
